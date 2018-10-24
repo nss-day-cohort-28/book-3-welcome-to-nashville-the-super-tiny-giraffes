@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  margin: 0 20px;
+  background-color: rgb(245, 240, 240);
+  overflow: hidden;
+}
+
+.container {
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 75%;
+  margin: 10px auto;
+}
+
+.label {
+  flex-basis: 100%;
+  height: 25px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+input[type="text"] {
+  flex-basis: 50%;
+  height: 40px;
+  margin-bottom: 20px;
+}
+
+.search {
+  flex-basis: 15%;
+  height: 40px;
+  margin-left: 25px;
+}
+
+h1:first-of-type {
+  margin-top: 10px;
+}
+
+h1 {
+  display: table;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.results--output, .itinerary--output {
+  background-color: white;
+  width: 75%;
+  height: 150px;
+  border: 1px solid black;
+}
+
+.results--output {
+  margin: 10px auto 30px auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.itinerary--output {
+  margin: 10px auto;
+}
