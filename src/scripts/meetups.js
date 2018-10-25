@@ -7,8 +7,6 @@ container.addEventListener("click", event => {
       btnClass = "meetupClass"
       return printToDOM(eventsParsedData.events)
       console.log(eventsParsedData)
-      // const halloween = eventsParsedData.name.text
-      // halloweenMachine(halloween)
     })
   }
 })
