@@ -2,6 +2,7 @@ const fragment = document.createDocumentFragment();
 const container = document.getElementById("container");
 const results = document.getElementById("results--output");
 const parksInput = document.getElementById("parks--input");
+const meetupsInput = document.getElementById("meetups--input");
 const concertsInput = document.getElementById("concerts--input");
 const itinerary = document.getElementById("itinerary--output");
 let counter = 0;
@@ -56,6 +57,8 @@ function createElement(obj) {
     div.innerHTML = `${counter}: ${obj.park_name}; ${obj.mapped_location_address}`
   } else if (obj.hasOwnProperty("performance")) {
     div.innerHTML = `${counter}: ${obj.displayName}`
+  } else if (obj.hasOwnProperty("is_free")) {
+    div.innerHTML = `${counter}: ${obj.name.text}`
   }
   div.appendChild(createSaveBtn(btnClass))
   return div
@@ -107,12 +110,14 @@ results.addEventListener("click", (e) => {
         id: 1,
         meetup: savedItem
       }
-    } else (btnClass === "concertsClass") {
+    } else if (btnClass === "concertsClass") {
       updateItinerary = {
         id: 1,
         concert: savedItem
+      } 
+    } else {
+        alert("Error button class")
       }
-    }
     //patch the database with the correct itinerary property: value pair
     fetch("http://localhost:8088/itinerary/1", {
       method: "PATCH",
