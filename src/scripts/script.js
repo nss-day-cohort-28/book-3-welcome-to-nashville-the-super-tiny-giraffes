@@ -1,10 +1,12 @@
 const fragment = document.createDocumentFragment();
 const container = document.getElementById("container");
 const results = document.getElementById("results--output");
-const itinerary = document.getElementById("itinerary--output");
 const parksInput = document.getElementById("parks--input");
 const meetupsInput = document.getElementById("meetups--input");
+const concertsInput = document.getElementById("concerts--input");
+const itinerary = document.getElementById("itinerary--output");
 let counter = 0;
+let btnClass = "";
 
 //This function clears all information in the itinerary when the page loads or is refreshed
 function clearItinerary() {
@@ -25,7 +27,7 @@ function clearItinerary() {
     },
     body: JSON.stringify(clearDatabase)
   })
-  //fetch the new (empty) itinerary information and list the information (which is 
+  //fetch the new (empty) itinerary information and list the information (which is
   //just the parameters of the object) in the itinerary div
   .then(fetch("http://localhost:8088/itinerary/1")
   .then(data => data.json())
@@ -34,16 +36,35 @@ function clearItinerary() {
 }
 window.onload = clearItinerary();
 
-//create a button, give it text, a class of 'save', and position in div
+//create a button, give it text, a class of "save", and position in div
 function createSaveBtn() {
   const btn = document.createElement("BUTTON");
   btn.innerHTML = "Save";
-  btn.className = "save";
+  btn.className = `save ${btnClass}`;
   btn.style = "position: absolute; right: 0;"
   return btn
 }
 
-//loop through the array of individual park objects and call createElement()
+/*
+  This function accepts a single object as a parameter...
+  Create div and append div with incrementing #, park name, park address, and button
+*/
+function createElement(obj) {
+  const div = document.createElement("DIV");
+  counter++;
+  div.style = "position: relative;"
+  if (obj.hasOwnProperty("park_name")) {
+    div.innerHTML = `${counter}: ${obj.park_name}; ${obj.mapped_location_address}`
+  } else if (obj.hasOwnProperty("performance")) {
+    div.innerHTML = `${counter}: ${obj.displayName}`
+  } else if (obj.hasOwnProperty("is_free")) {
+    div.innerHTML = `${counter}: ${obj.name.text}`
+  }
+  div.appendChild(createSaveBtn())
+  return div
+}
+
+//loop through the array of individual park objects and call createElement(
 function printToDOM(returnedQuery) {
   returnedQuery.forEach(obj => {
     fragment.appendChild(createElement(obj));
@@ -65,7 +86,7 @@ function getData() {
 //A single click listener on the results div will activate when a save button is clicked
 results.addEventListener("click", (e) => {
   if (e.target.classList.contains("save")) {
-    //first slice removes '#. '...second slice removes save btn text
+    //first slice removes "#. "...second slice removes save btn text
     //the result is the string we want, without the messy details
     let savedItem = e.target.parentNode.textContent.slice(3).slice(0, -4);
 

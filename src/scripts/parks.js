@@ -1,18 +1,5 @@
 let parksArray = [];
 
-/*
-  This function accepts a single object as a parameter...
-  Create div and append div with incrementing #, park name, park address, and button
-*/
-function createElement(obj) {
-  const div = document.createElement("DIV");
-  counter++;
-  div.style = "position: relative;"
-  div.innerHTML = `${counter}: ${obj.park_name}; ${obj.mapped_location_address}`
-  div.appendChild(createSaveBtn())
-  return div
-}
-
 container.addEventListener("click", (e) => {
   //If the click takes place on the search--parks button, then...
   if (e.target.classList.contains("search--parks")) {
