@@ -33,28 +33,26 @@ container.addEventListener("click", (e) => {
     parksArray = [];
     //get data from metro database
     //use input text value as query
-    fetch(`https://data.nashville.gov/resource/xbru-cfzi.json?$q=${query}&$$app_token=h1WfXkXd6gZAbEz4zxnP6zg6c`)
+    fetch(`https://data.nashville.gov/resource/xbru-cfzi.json?${querySplit}=Yes&$$app_token=h1WfXkXd6gZAbEz4zxnP6zg6c`)
     .then(jsonData => jsonData.json())
     //push all objects in the array to a new array (which will be returned from promise)
     .then(data => {
+      console.log(data.length)
       data.forEach(obj => {
         parksArray.push(obj);
       })
-      return parksArray;
+      return printToDOM(parksArray);
     })
+
     //loop through the array of individual park objects and call createElement()
-    .then(parksArray => {
-      parksArray.forEach(obj => {
-        //if the query, once spaces are replaced by underscores, equals "Yes", then
-        //allow the element to be created for display in the results div
-        if (obj[querySplit] == "Yes") {
-          fragment.appendChild(createElement(obj));
-        }
+    function printToDOM(parkQuery) {
+      parkQuery.forEach(obj => {
+        fragment.appendChild(createElement(obj));
       })
       //reset counter so that the next search will assign the correct number
       counter = 0;
       //append the divs to the results field all at once
       results.appendChild(fragment);
-    })
+    }
   }
 })
