@@ -14,15 +14,6 @@ function createElement(obj) {
   return div
 }
 
-//create a button, give it text, a class of 'save', and position in div
-function createSaveBtn() {
-  const btn = document.createElement("BUTTON");
-  btn.innerHTML = "Save";
-  btn.className = "save";
-  btn.style = "position: absolute; right: 0;"
-  return btn
-}
-
 container.addEventListener("click", (e) => {
   //If the click takes place on the search--parks button, then...
   if (e.target.classList.contains("search--parks")) {
