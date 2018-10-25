@@ -39,7 +39,6 @@ container.addEventListener("click", (e) => {
       .then(jsonData => jsonData.json())
       //push all objects in the array to a new array (which will be returned from promise)
       .then(data => {
-        console.log(data.resultsPage.results.venue[0].id);
         let venueID = data.resultsPage.results.venue[0].id;
         return concertCalendar(venueID);
       })
