@@ -18,6 +18,7 @@ container.addEventListener("click", (e) => {
       data.forEach(obj => {
         parksArray.push(obj);
       })
+      btnClass = "parksClass"
       return printToDOM(parksArray);
     })
   }
