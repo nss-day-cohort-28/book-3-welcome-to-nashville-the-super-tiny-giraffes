@@ -1,5 +1,4 @@
 let parksArray = [];
-let counter = 0;
 
 /*
   This function accepts a single object as a parameter...
@@ -26,7 +25,7 @@ container.addEventListener("click", (e) => {
     //use input text value as query
     fetch(`https://data.nashville.gov/resource/xbru-cfzi.json?${querySplit}=Yes&$$app_token=h1WfXkXd6gZAbEz4zxnP6zg6c`)
     .then(jsonData => jsonData.json())
-    //push all objects in the array to a new array (which will be returned from promise)
+    //push all objects in the array to a new array (which will be returned in function call)
     .then(data => {
       console.log(data.length)
       data.forEach(obj => {
@@ -34,16 +33,5 @@ container.addEventListener("click", (e) => {
       })
       return printToDOM(parksArray);
     })
-
-    //loop through the array of individual park objects and call createElement()
-    function printToDOM(parkQuery) {
-      parkQuery.forEach(obj => {
-        fragment.appendChild(createElement(obj));
-      })
-      //reset counter so that the next search will assign the correct number
-      counter = 0;
-      //append the divs to the results field all at once
-      results.appendChild(fragment);
-    }
   }
 })
