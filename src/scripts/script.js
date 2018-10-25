@@ -2,10 +2,12 @@ const fragment = document.createDocumentFragment();
 const container = document.getElementById("container");
 const results = document.getElementById("results--output");
 const parksInput = document.getElementById("parks--input");
+const meetupsInput = document.getElementById("meetups--input");
 const concertsInput = document.getElementById("concerts--input");
 const restaurantsInput = document.getElementById("restaurants--input")
 const itinerary = document.getElementById("itinerary--output");
 let counter = 0;
+let btnClass = "";
 
 //This function clears all information in the itinerary when the page loads or is refreshed
 function clearItinerary() {
@@ -39,7 +41,7 @@ window.onload = clearItinerary();
 function createSaveBtn() {
   const btn = document.createElement("BUTTON");
   btn.innerHTML = "Save";
-  btn.className = "save";
+  btn.className = `save ${btnClass}`;
   btn.style = "position: absolute; right: 0;"
   return btn
 }
@@ -56,6 +58,8 @@ function createElement(obj) {
     div.innerHTML = `${counter}: ${obj.park_name}; ${obj.mapped_location_address}`
   } else if (obj.hasOwnProperty("performance")) {
     div.innerHTML = `${counter}: ${obj.displayName}`
+  } else if (obj.hasOwnProperty("is_free")) {
+    div.innerHTML = `${counter}: ${obj.name.text}`
   }
   div.appendChild(createSaveBtn())
   return div
