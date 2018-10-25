@@ -60,6 +60,8 @@ h1 {
   margin: 10px auto 30px auto;
   overflow-x: hidden;
   overflow-y: auto;
+  padding: 5px;
+  line-height: 1.75;
 }
 
 .itinerary--output {
