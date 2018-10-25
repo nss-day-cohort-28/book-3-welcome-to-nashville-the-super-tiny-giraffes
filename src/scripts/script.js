@@ -90,7 +90,8 @@ results.addEventListener("click", (e) => {
     // THIS IS WHERE WE PUT THE FINAL IF STATEMENT TO DETERMINE WHAT TO PATCH IN THE DATABASE
     let updateItinerary = {};
 
-    // if (class === savedClass)
+    // if (btnclass === uniqueClass)
+
     if (btnClass === "parksClass") {
       updateItinerary = {
         id: 1,
@@ -106,13 +107,12 @@ results.addEventListener("click", (e) => {
         id: 1,
         meetup: savedItem
       }
-    } else if (btnClass === "concertsClass") {
+    } else (btnClass === "concertsClass") {
       updateItinerary = {
         id: 1,
         concert: savedItem
       }
-    } 
-    
+    }
     //patch the database with the correct itinerary property: value pair
     fetch("http://localhost:8088/itinerary/1", {
       method: "PATCH",
