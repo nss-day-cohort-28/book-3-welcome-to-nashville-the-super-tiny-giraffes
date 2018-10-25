@@ -40,6 +40,7 @@ container.addEventListener("click", (e) => {
       //push all objects in the array to a new array (which will be returned from promise)
       .then(data => {
         let venueID = data.resultsPage.results.venue[0].id;
+        btnClass = "concertsClass";
         return concertCalendar(venueID);
       })
   }
