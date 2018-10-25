@@ -14,6 +14,7 @@ function createElement(obj) {
   return div
 }
 
+//create a button, give it text, a class of 'save', and position in div
 function createSaveBtn() {
   const btn = document.createElement("BUTTON");
   btn.innerHTML = "Save";
@@ -31,6 +32,7 @@ container.addEventListener("click", (e) => {
     results.innerHTML = "";
     parksArray = [];
     //get data from metro database
+    //use input text value as query
     fetch(`https://data.nashville.gov/resource/xbru-cfzi.json?$q=${query}&$$app_token=h1WfXkXd6gZAbEz4zxnP6zg6c`)
     .then(jsonData => jsonData.json())
     //push all objects in the array to a new array (which will be returned from promise)
@@ -43,6 +45,8 @@ container.addEventListener("click", (e) => {
     //loop through the array of individual park objects and call createElement()
     .then(parksArray => {
       parksArray.forEach(obj => {
+        //if the query, once spaces are replaced by underscores, equals "Yes", then
+        //allow the element to be created for display in the results div
         if (obj[querySplit] == "Yes") {
           fragment.appendChild(createElement(obj));
         }

@@ -38,6 +38,7 @@ input[type="text"] {
   flex-basis: 15%;
   height: 40px;
   margin-left: 25px;
+  margin-right: 5px;
 }
 
 h1:first-of-type {
