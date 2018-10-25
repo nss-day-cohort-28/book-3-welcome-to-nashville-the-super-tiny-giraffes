@@ -2,6 +2,9 @@
 const restaurantBtn = document.querySelector(".search--restaurants")
 
 //  defining a function to get the data from Zomato API and turn it into JavaScript
+
+
+
 const getRestaurantData = () => {
   return fetch("https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city&q=Italian", {
     headers: {
@@ -9,7 +12,7 @@ const getRestaurantData = () => {
     }
   })
     .then(data => data.json())
-    .then(returns => { console.log(returns)})
+    .then(returns => { console.log(returns.restaurants[1].restaurant.name) })
 }
 
 // add event listener to search button that fetches data when clicked

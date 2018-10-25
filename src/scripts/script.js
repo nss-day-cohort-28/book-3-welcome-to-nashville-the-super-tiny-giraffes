@@ -3,6 +3,7 @@ const container = document.getElementById("container");
 const results = document.getElementById("results--output");
 const parksInput = document.getElementById("parks--input");
 const concertsInput = document.getElementById("concerts--input");
+const restaurantsInput = document.getElementById("restaurants--input")
 const itinerary = document.getElementById("itinerary--output");
 let counter = 0;
 
