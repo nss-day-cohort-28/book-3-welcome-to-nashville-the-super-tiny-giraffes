@@ -3,12 +3,12 @@ let counter = 0;
 
 /*
   This function accepts a single object as a parameter...
-  Create div, create button, give button a class, and append div 
-  with incrementing #, park name, park address, and button
+  Create div and append div with incrementing #, park name, park address, and button
 */
 function createElement(obj) {
   const div = document.createElement("DIV");
   counter++;
+  div.style = "position: relative;"
   div.innerHTML = `${counter}: ${obj.park_name}; ${obj.mapped_location_address}`
   div.appendChild(createSaveBtn())
   return div
@@ -18,20 +18,24 @@ function createSaveBtn() {
   const btn = document.createElement("BUTTON");
   btn.innerHTML = "Save";
   btn.className = "save";
-  btn.style = "margin-left: 10px;"
+  btn.style = "position: absolute; right: 0;"
   return btn
 }
 
 container.addEventListener("click", (e) => {
   //If the click takes place on the search--parks button, then...
   if (e.target.classList.contains("search--parks")) {
+    let query = parksInput.value;
+    let querySplit = query.split(" ").join("_");
+    //clear information in results div and empty parksArray
+    results.innerHTML = "";
+    parksArray = [];
     //get data from metro database
-    fetch("https://data.nashville.gov/resource/xbru-cfzi.json?$$app_token=h1WfXkXd6gZAbEz4zxnP6zg6c")
+    fetch(`https://data.nashville.gov/resource/xbru-cfzi.json?$q=${query}&$$app_token=h1WfXkXd6gZAbEz4zxnP6zg6c`)
     .then(jsonData => jsonData.json())
     //push all objects in the array to a new array (which will be returned from promise)
     .then(data => {
       data.forEach(obj => {
-        console.log(obj.park_name);
         parksArray.push(obj);
       })
       return parksArray;
@@ -39,7 +43,9 @@ container.addEventListener("click", (e) => {
     //loop through the array of individual park objects and call createElement()
     .then(parksArray => {
       parksArray.forEach(obj => {
-        fragment.appendChild(createElement(obj));
+        if (obj[querySplit] == "Yes") {
+          fragment.appendChild(createElement(obj));
+        }
       })
       //reset counter so that the next search will assign the correct number
       counter = 0;

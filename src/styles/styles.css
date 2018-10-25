@@ -31,6 +31,7 @@ input[type="text"] {
   flex-basis: 50%;
   height: 40px;
   margin-bottom: 20px;
+  padding-left: 5px;
 }
 
 .search {
