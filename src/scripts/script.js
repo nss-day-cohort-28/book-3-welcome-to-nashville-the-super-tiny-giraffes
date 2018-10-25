@@ -6,7 +6,7 @@ const meetupsInput = document.getElementById("meetups--input");
 const concertsInput = document.getElementById("concerts--input");
 const itinerary = document.getElementById("itinerary--output");
 let counter = 0;
-let btnClass = "";
+let btnClass = ""
 
 //This function clears all information in the itinerary when the page loads or is refreshed
 function clearItinerary() {
@@ -27,12 +27,12 @@ function clearItinerary() {
     },
     body: JSON.stringify(clearDatabase)
   })
-  //fetch the new (empty) itinerary information and list the information (which is
-  //just the parameters of the object) in the itinerary div
-  .then(fetch("http://localhost:8088/itinerary/1")
-  .then(data => data.json())
-  .then(itinerary.innerHTML = "Park: <br /> Restaurant: <br /> Meetup: <br /> Concert: <br />")
-  )
+    //fetch the new (empty) itinerary information and list the information (which is
+    //just the parameters of the object) in the itinerary div
+    .then(fetch("http://localhost:8088/itinerary/1")
+      .then(data => data.json())
+      .then(itinerary.innerHTML = "Park: <br /> Restaurant: <br /> Meetup: <br /> Concert: <br />")
+    )
 }
 window.onload = clearItinerary();
 
@@ -60,7 +60,7 @@ function createElement(obj) {
   } else if (obj.hasOwnProperty("is_free")) {
     div.innerHTML = `${counter}: ${obj.name.text}`
   }
-  div.appendChild(createSaveBtn())
+  div.appendChild(createSaveBtn(btnClass))
   return div
 }
 
@@ -90,12 +90,34 @@ results.addEventListener("click", (e) => {
     //the result is the string we want, without the messy details
     let savedItem = e.target.parentNode.textContent.slice(3).slice(0, -4);
 
-// THIS IS WHERE WE PUT THE FINAL IF STATEMENT TO DETERMINE WHAT TO PATCH IN THE DATABASE
+    // THIS IS WHERE WE PUT THE FINAL IF STATEMENT TO DETERMINE WHAT TO PATCH IN THE DATABASE
+    let updateItinerary = {};
 
-    const updateItinerary = {
-      id: 1,
-      park: savedItem
-    }
+    // if (btnclass === uniqueClass)
+
+    if (btnClass === "parksClass") {
+      updateItinerary = {
+        id: 1,
+        park: savedItem
+      }
+    } else if (btnClass === "restaurantsClass") {
+      updateItinerary = {
+        id: 1,
+        restaurant: savedItem
+      }
+    } else if (btnClass === "meetupClass") {
+      updateItinerary = {
+        id: 1,
+        meetup: savedItem
+      }
+    } else if (btnClass === "concertsClass") {
+      updateItinerary = {
+        id: 1,
+        concert: savedItem
+      } 
+    } else {
+        alert("Error button class")
+      }
     //patch the database with the correct itinerary property: value pair
     fetch("http://localhost:8088/itinerary/1", {
       method: "PATCH",
@@ -104,9 +126,9 @@ results.addEventListener("click", (e) => {
       },
       body: JSON.stringify(updateItinerary)
     })
-    //the patch returns a promise with the itinerary object (id = 1)
-    //the updated information is appended to the itinerary div
-    .then(patchData => patchData.json())
-    .then(data => {itinerary.innerHTML = `Park: ${data.park} <br /> Restaurant: ${data.restaurant} <br /> Meetup: ${data.meetup} <br /> Concert: ${data.concert} <br />`})
+      //the patch returns a promise with the itinerary object (id = 1)
+      //the updated information is appended to the itinerary div
+      .then(patchData => patchData.json())
+      .then(data => { itinerary.innerHTML = `Park: ${data.park} <br /> Restaurant: ${data.restaurant} <br /> Meetup: ${data.meetup} <br /> Concert: ${data.concert} <br />` })
   }
 });

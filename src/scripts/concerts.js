@@ -5,14 +5,6 @@ counter = 0;
   This function accepts a single object as a parameter...
   Create div and append div with incrementing #, park name, park address, and button
 */
-// function createConcerts(obj) {
-//   const div = document.createElement("DIV");
-//   counter++;
-//   div.style = "position: relative;"
-
-//   div.appendChild(createSaveBtn())
-//   return div
-// }
 
 function concertCalendar(venueID) {
   fetch(`https://api.songkick.com/api/3.0/venues/${venueID}/calendar.json?&apikey=limoekPcmxpzCSvy`)
@@ -40,6 +32,7 @@ container.addEventListener("click", (e) => {
       //push all objects in the array to a new array (which will be returned from promise)
       .then(data => {
         let venueID = data.resultsPage.results.venue[0].id;
+        btnClass = "concertsClass";
         return concertCalendar(venueID);
       })
   }
