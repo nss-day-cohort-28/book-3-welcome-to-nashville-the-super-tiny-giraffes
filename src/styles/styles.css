@@ -68,4 +68,6 @@ h1 {
 
 .itinerary--output {
   margin: 10px auto;
+  padding: 5px;
+  line-height: 1.75;
 }
