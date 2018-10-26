@@ -61,7 +61,7 @@ function createElement(obj) {
   } else if (obj.hasOwnProperty("is_free")) {
     div.innerHTML = `${counter}: ${obj.name.text}`
   } else if (obj.hasOwnProperty("restaurant")) {
-    div.innerHTML = `${counter}: ${obj.restaurant.name}`
+    div.innerHTML = `${counter}: ${obj.restaurant.name} - ${obj.restaurant.location.address}`
   }
   div.appendChild(createSaveBtn(btnClass))
   return div
