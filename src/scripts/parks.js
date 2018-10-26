@@ -3,7 +3,7 @@ let parksArray = [];
 container.addEventListener("click", (e) => {
   //If the click takes place on the search--parks button, then...
   if (e.target.classList.contains("search--parks")) {
-    let query = parksInput.value;
+    let query = parksInput.value.toLowerCase();
     let querySplit = query.split(" ").join("_");
     //clear information in results div and empty parksArray
     results.innerHTML = "";
@@ -14,7 +14,6 @@ container.addEventListener("click", (e) => {
     .then(jsonData => jsonData.json())
     //push all objects in the array to a new array (which will be returned in function call)
     .then(data => {
-      console.log(data.length)
       data.forEach(obj => {
         parksArray.push(obj);
       })
