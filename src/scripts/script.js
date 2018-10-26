@@ -28,12 +28,8 @@ function clearItinerary() {
     },
     body: JSON.stringify(clearDatabase)
   })
-    //fetch the new (empty) itinerary information and list the information (which is
-    //just the parameters of the object) in the itinerary div
-    .then(fetch("http://localhost:8088/itinerary/1")
-      .then(data => data.json())
-      .then(itinerary.innerHTML = "Park: <br /> Restaurant: <br /> Meetup: <br /> Concert: <br />")
-    )
+    // list the parameters of the itinerary in the itinerary div
+    .then(itinerary.innerHTML = "Park: <br /> Restaurant: <br /> Meetup: <br /> Concert: <br />")
 }
 window.onload = clearItinerary();
 
@@ -54,6 +50,8 @@ function createElement(obj) {
   const div = document.createElement("DIV");
   counter++;
   div.style = "position: relative;"
+  //hasOwnProperty is used with a unique object property that differs in each API
+  //the if statements allow us to apply the correct innerHTML content to the div
   if (obj.hasOwnProperty("park_name")) {
     div.innerHTML = `${counter}: ${obj.park_name}; ${obj.mapped_location_address}`
   } else if (obj.hasOwnProperty("performance")) {
@@ -78,15 +76,7 @@ function printToDOM(returnedQuery) {
   results.appendChild(fragment);
 }
 
-function getData() {
-  fetch("http://localhost:8088/itinerary/1")
-    .then(jsonData => jsonData.json())
-    .then(data => {
-      itinerary.innerHTML = `Park: ${data.park} <br /> Restaurant: ${data.restaurant} <br /> Meetup: ${data.reetup} <br /> Concert: ${data.concert} <br />`
-    })
-}
-
-//A single click listener on the results div will activate when a save button is clicked
+//A single click listener on the results div will activate when a search results save button is clicked
 results.addEventListener("click", (e) => {
   if (e.target.classList.contains("save")) {
     //first slice removes "#. "...second slice removes save btn text
@@ -132,6 +122,6 @@ results.addEventListener("click", (e) => {
       //the patch returns a promise with the itinerary object (id = 1)
       //the updated information is appended to the itinerary div
       .then(patchData => patchData.json())
-      .then(data => { itinerary.innerHTML = `Park: ${data.park} <br /> Restaurant: ${data.restaurant} <br /> Meetup: ${data.meetup} <br /> Concert: ${data.concert} <br />` })
+      .then(data => {itinerary.innerHTML = `Park: ${data.park} <br /> Restaurant: ${data.restaurant} <br /> Meetup: ${data.meetup} <br /> Concert: ${data.concert} <br />` })
   }
 });

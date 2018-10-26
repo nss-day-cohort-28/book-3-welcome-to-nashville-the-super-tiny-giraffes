@@ -6,7 +6,6 @@ container.addEventListener("click", event => {
     .then( (eventsParsedData) => {
       btnClass = "meetupClass"
       return printToDOM(eventsParsedData.events)
-      console.log(eventsParsedData)
     })
   }
 })
