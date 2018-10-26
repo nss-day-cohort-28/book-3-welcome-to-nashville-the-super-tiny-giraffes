@@ -4,6 +4,7 @@ const results = document.getElementById("results--output");
 const parksInput = document.getElementById("parks--input");
 const meetupsInput = document.getElementById("meetups--input");
 const concertsInput = document.getElementById("concerts--input");
+const restaurantsInput = document.getElementById("restaurants--input")
 const itinerary = document.getElementById("itinerary--output");
 let counter = 0;
 let btnClass = ""
@@ -59,6 +60,8 @@ function createElement(obj) {
     div.innerHTML = `${counter}: ${obj.displayName}`
   } else if (obj.hasOwnProperty("is_free")) {
     div.innerHTML = `${counter}: ${obj.name.text}`
+  } else if (obj.hasOwnProperty("restaurant")) {
+    div.innerHTML = `${counter}: ${obj.restaurant.name} - ${obj.restaurant.location.address}`
   }
   div.appendChild(createSaveBtn(btnClass))
   return div
