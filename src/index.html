@@ -9,39 +9,59 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
   <!-- fav icon -->
   <link rel="shortcut icon" type="image/png" href="images/giraffe.png" />
+  <!-- Google fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <!-- Initialize jQuery -->
+  <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
   <title>Super Tiny Giraffes</title>
 </head>
 <body>
-  <h1>Welcome to Nashville</h1>
+  <nav class="navbar">
+    <ul>
+      <li id="nav--parks">Parks</li>
+      <li id="nav--restaurants">Restaurants</li>
+      <li id="nav--meetups">Meetups</li>
+      <li id="nav--concerts">Concerts</li>
+    </ul>
+  </nav>
+  <h1>Welcome to Nashville!</h1>
   <div class="container" id="container">
-    <label class="label" for="parks--input">Parks</label>
-    <input type="text" id="parks--input" placeholder="search parks by feature">
-    <button class="search search--parks">Search</button>
-    <i class="fas fa-info-circle" title="ada accessible, baseball fields, basketball courts, skate park, tennis courts, nature center, lake, picnic shelters"></i>
+    <div class="container--sub1">
+      <div class="whatup" id="whatup">What do you want to do?</div>
+      
+      <input class="input hidden" type="text" id="parks--input" placeholder="search parks by feature">
+      <button class="btn search search--parks hidden">Search</button>
+      <i class="fas fa-info-circle hidden" title="ada accessible, baseball fields, basketball courts, skate park, tennis courts, nature center, lake, picnic shelters"></i>
 
-    <label class="label" for="restaurants--input">Restaurants</label>
-    <input type="text" id="restaurants--input" placeholder="search restaurants by cuisine">
-    <button class="search search--restaurants">Search</button>
-    <i class="fas fa-info-circle" title="Italian, American, BBQ, Asian, vegetarian, Greek..."></i>
+      <input class="input hidden" type="text" id="restaurants--input" placeholder="search restaurants by cuisine">
+      <button class="btn search search--restaurants hidden">Search</button>
+      <i class="fas fa-info-circle hidden" title="Italian, American, BBQ, Asian, vegetarian, Greek..."></i>
 
-    <label class="label" for="meetups--input">Meetups</label>
-    <input type="text" id="meetups--input" placeholder="search meetups by topic">
-    <button class="search search--meetups">Search</button>
-    <i class="fas fa-info-circle" title="Basketball, Coding, Halloween, Karaoke, Monday, Yoga..."></i>
+      <input class="input hidden" type="text" id="meetups--input" placeholder="search meetups by topic">
+      <button class="btn search search--meetups hidden">Search</button>
+      <i class="fas fa-info-circle hidden" title="Basketball, Coding, Halloween, Karaoke, Monday, Yoga..."></i>
 
-    <label class="label" for="concerts--input">Concerts</label>
-    <input type="text" id="concerts--input" placeholder="search concerts by venue">
-    <button class="search search--concerts">Search</button>
-    <i class="fas fa-info-circle" title="Ryman Auditorium, Basement East, Bridgestone Arena, Exit-In..."></i>
+      <input class="input hidden" type="text" id="concerts--input" placeholder="search concerts by venue">
+      <button class="btn search search--concerts hidden">Search</button>
+      <i class="fas fa-info-circle hidden" title="Ryman Auditorium, Basement East, Bridgestone Arena, Exit-In..."></i>
+    </div>
+
+    <div class="container--sub2">
+      <div class="sub2--title1">
+        <h2>Search Results</h2>
+        <h2>Itinerary</h2>
+      </div>
+      <div class="results--output" id="results--output"></div>
+      <div class="itinerary--output" id="itinerary--output"></div>
+      <div class="sub2--title2">
+        <h2>Your Saved Itinerary</h2>
+      </div>
+      <div class="itinerary--saved" id="itinerary--saved"></div>
+    </div>
   </div>
   
-  <h1>Search Results</h1>
-  <div class="results--output" id="results--output"></div>
-
-  <h1>Itinerary</h1>
-  <div class="itinerary--output" id="itinerary--output"></div>
-
   <script src="scripts/script.js"></script>
+  <script src="scripts/layout.js"></script>
   <script src="scripts/parks.js"></script>
   <script src="scripts/restaurants.js"></script>
   <script src="scripts/meetups.js"></script>
