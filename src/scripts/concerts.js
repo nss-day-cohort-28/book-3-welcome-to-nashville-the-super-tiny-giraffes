@@ -1,20 +1,12 @@
-let concertsArray = [];
-counter = 0;
-
-/*
-  This function accepts a single object as a parameter...
-  Create div and append div with incrementing #, park name, park address, and button
-*/
+// this function serves to take the venue ID from seperate JSON fetch request and get the upcoming calendar for the venue.  Used in search button event listener.
 
 function concertCalendar(venueID) {
   fetch(`https://api.songkick.com/api/3.0/venues/${venueID}/calendar.json?&apikey=limoekPcmxpzCSvy`)
     .then(jsonData => jsonData.json())
     .then(data => {
-      for (i = 0; i < data.resultsPage.results.event.length; i++) {
-        concertsArray.push(data.resultsPage.results.event[i])
+      return printToDOM(data.resultsPage.results.event);
       }
-      return printToDOM(concertsArray);
-    })
+    )
 }
 
 container.addEventListener("click", (e) => {
@@ -22,17 +14,17 @@ container.addEventListener("click", (e) => {
   if (e.target.classList.contains("search--concerts")) {
     let query = concertsInput.value;
     let querySplit = query.split(" ").join("_");
-    //clear information in results div and empty parksArray
+    //clear information in results div
     results.innerHTML = "";
-    concertsArray = [];
-    //get data from metro database
-    //use input text value as query
+    //get venue ID from songkick. use input text value as query
     fetch(`https://api.songkick.com/api/3.0/search/venues.json?query=${querySplit}&apikey=limoekPcmxpzCSvy`)
       .then(jsonData => jsonData.json())
-      //push all objects in the array to a new array (which will be returned from promise)
       .then(data => {
+        //push the id value to a new string (which will be returned from promise)
         let venueID = data.resultsPage.results.venue[0].id;
+        // assign unique class result that will be used in results button event listener
         btnClass = "concertsClass";
+        // run function to get calendar for venue ID and return results
         return concertCalendar(venueID);
       })
   }
