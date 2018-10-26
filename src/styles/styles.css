@@ -19,6 +19,7 @@ body {
   height: 50px;
   font-family: 'Montserrat', sans-serif;
   border-bottom: 1px solid black;
+  user-select: none;
 }
 
 .navbar ul {
@@ -85,12 +86,32 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
-  border-bottom: 1px solid blue;
+  border-bottom: 1px solid rgb(142, 162, 218);
 }
 
-.search {
+.search, .btn--save {
   flex-basis: 15%;
   height: 40px;
+}
+
+.btn, .save {
+  border: none;
+  background-color: rgb(142, 162, 218);
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn--save {
+  margin-top: 15px;
+}
+
+.save {
+  padding: 2px;
+}
+
+.btn:focus, .save:focus {
+  outline: none;
 }
 
 h1 {
@@ -102,6 +123,7 @@ h1 {
   font-weight: 700;
   font-style: italic;
   font-size: 40px;
+  user-select: none;
 }
 
 .sub2--title1, .sub2--title2 {
@@ -126,16 +148,15 @@ h1 {
   border: 1px solid black;
 }
 
-.results--output {
+.results--output, .itinerary--output, .itinerary--saved {
   margin: 0 auto;
   overflow-x: hidden;
   overflow-y: auto;
   padding: 5px;
   line-height: 1.75;
+  border-radius: 10px;
 }
 
-.itinerary--output {
-  margin: 0 auto;
-  padding: 5px;
-  line-height: 1.75;
+.itinerary--saved {
+  padding-top: 0;
 }
