@@ -20,18 +20,22 @@ function hideContent() {
   //We want to hide them and only show the content in the event listener that
   //was triggered
   if (!$(parksInput).hasClass("hidden")) {
+    parksInput.value = "";
     toggleClass(parksInput, "hidden");
     toggleClass(searchButtons[0], "hidden");
   }
   if (!$(restaurantsInput).hasClass("hidden")) {
+    restaurantsInput.value = "";
     toggleClass(restaurantsInput, "hidden");
     toggleClass(searchButtons[1], "hidden");
   }
   if (!$(meetupsInput).hasClass("hidden")) {
+    meetupsInput.value = "";
     toggleClass(meetupsInput, "hidden");
     toggleClass(searchButtons[2], "hidden");
   }
   if (!$(concertsInput).hasClass("hidden")) {
+    meetupsInput.value = "";
     toggleClass(concertsInput, "hidden");
     toggleClass(searchButtons[3], "hidden");
   }

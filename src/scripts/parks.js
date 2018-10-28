@@ -11,7 +11,13 @@ container.addEventListener("click", (e) => {
     //get data from metro database
     //use input text value as query
     fetch(`https://data.nashville.gov/resource/xbru-cfzi.json?${querySplit}=Yes&$$app_token=h1WfXkXd6gZAbEz4zxnP6zg6c`)
-    .then(jsonData => jsonData.json())
+    .then(jsonData => {
+      if (jsonData.ok) {
+        return jsonData.json()
+      } else {
+        return Promise.reject("That search didn't return any results. Please try again")
+      }
+    })
     //push all objects in the array to a new array (which will be returned in function call)
     .then(data => {
       data.forEach(obj => {
@@ -20,5 +26,6 @@ container.addEventListener("click", (e) => {
       btnClass = "parksClass"
       return printToDOM(parksArray);
     })
+    .catch(error => alert(error))
   }
 })
