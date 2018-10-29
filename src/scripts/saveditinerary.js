@@ -6,7 +6,7 @@ let savedItineraryObject = {};
 const createDeleteBtn = () => {
   const btn = document.createElement("BUTTON");
   btn.innerHTML = "Delete";
-  btn.className = "delete";
+  btn.className = `delete ${deleteBtnClass}`;
   return btn
 }
 
@@ -31,8 +31,10 @@ function saveItinerary() {
         },
         body: JSON.stringify(savedItineraryObject)
       })
+      //fetch-POST returns a promise, which contains the object information that was just posted to the database
         .then(jsonData => jsonData.json())
         .then(data => {
+          deleteBtnClass = "_" + data.id;
           if (savedItinerary.innerHTML === "") {
             let newItinerary = document.createElement("div")
             newItinerary.classList.add("savedItin")
@@ -58,11 +60,17 @@ function saveItinerary() {
   // calling the saveItinerary function when the save itinerary button is clicked.
   saveItineraryBtn.addEventListener("click", event => saveItinerary(event))
 
-
   // adding an event listener to the Saved Itinerary Container. Handling a click event on the delete button TODO connect this to our JSON database to remove this entry
   savedItinerary.addEventListener("click", (event) => {
-    if (event.target.className === "delete") {
+    if (event.target.classList.contains("delete")) {
       let itineraryToDelete = event.target.parentNode
       savedItinerary.removeChild(itineraryToDelete);
+      //the second class of the delete button (see lines 9 and 37 of this file) is the id of the desired information in the database
+      fetch(`http://localhost:8088/itinerary/${parseInt(event.target.classList[1].slice(1))}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      })
     }
-  })
+  });

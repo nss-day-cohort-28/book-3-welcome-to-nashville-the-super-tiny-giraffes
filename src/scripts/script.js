@@ -7,7 +7,8 @@ const concertsInput = document.getElementById("concerts--input");
 const restaurantsInput = document.getElementById("restaurants--input")
 const itinerary = document.getElementById("itinerary--output");
 let counter = 0;
-let btnClass = ""
+let btnClass = "";
+let deleteBtnClass = "";
 
 //This function clears all information in the itinerary when the page loads or is refreshed
 function clearItinerary() {

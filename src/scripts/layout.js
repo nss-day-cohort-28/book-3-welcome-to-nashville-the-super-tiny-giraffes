@@ -35,7 +35,7 @@ function hideContent() {
     toggleClass(searchButtons[2], "hidden");
   }
   if (!$(concertsInput).hasClass("hidden")) {
-    meetupsInput.value = "";
+    concertsInput.value = "";
     toggleClass(concertsInput, "hidden");
     toggleClass(searchButtons[3], "hidden");
   }
