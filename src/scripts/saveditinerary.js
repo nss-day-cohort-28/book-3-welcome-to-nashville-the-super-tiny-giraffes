@@ -6,6 +6,7 @@ let savedItineraryObject = {};
 const createDeleteBtn = () => {
   const btn = document.createElement("BUTTON");
   btn.innerHTML = "Delete";
+//deleteBtnClass is used in the fetch-DELETE to identify what object in the databasee should be removed
   btn.className = `delete ${deleteBtnClass}`;
   return btn
 }
@@ -34,7 +35,7 @@ function saveItinerary() {
       //fetch-POST returns a promise, which contains the object information that was just posted to the database
         .then(jsonData => jsonData.json())
         .then(data => {
-          deleteBtnClass = "_" + data.id;
+          deleteBtnClass = "_" + data.id; //class cannot start with a number. _ is removed later on.
           if (savedItinerary.innerHTML === "") {
             let newItinerary = document.createElement("div")
             newItinerary.classList.add("savedItin")
@@ -65,7 +66,7 @@ function saveItinerary() {
     if (event.target.classList.contains("delete")) {
       let itineraryToDelete = event.target.parentNode
       savedItinerary.removeChild(itineraryToDelete);
-      //the second class of the delete button (see lines 9 and 37 of this file) is the id of the desired information in the database
+      //the second class of the delete button (see lines 10 and 38 of this file) is the id of the desired information in the database
       fetch(`http://localhost:8088/itinerary/${parseInt(event.target.classList[1].slice(1))}`, {
         method: "DELETE",
         headers: {

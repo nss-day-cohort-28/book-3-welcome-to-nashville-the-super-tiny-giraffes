@@ -34,7 +34,7 @@ body {
   cursor: pointer;
 }
 
-.hidden, .hidden::before {
+.hidden {
   display: none;
 }
 
@@ -146,9 +146,6 @@ h1 {
   flex-basis: 45%;
   height: 200px;
   border: 1px solid black;
-}
-
-.results--output, .itinerary--output, .itinerary--saved {
   margin: 0 auto;
   overflow-x: hidden;
   overflow-y: auto;
