@@ -15,7 +15,7 @@ container.addEventListener("click", (e) => {
       if (jsonData.ok) {
         return jsonData.json()
       } else {
-        return Promise.reject("That search didn't return any results. Please try again")
+        return Promise.reject("That search didn't return any results. Please try again.")
       }
     })
     //push all objects in the array to a new array (which will be returned in function call)
@@ -23,7 +23,7 @@ container.addEventListener("click", (e) => {
       data.forEach(obj => {
         parksArray.push(obj);
       })
-      btnClass = "parksClass"
+      btnClass = "parksClass";
       return printToDOM(parksArray);
     })
     .catch(error => alert(error))

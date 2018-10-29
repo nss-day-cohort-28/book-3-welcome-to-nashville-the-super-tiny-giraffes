@@ -13,7 +13,7 @@ container.addEventListener("click", (e) => {
   //If the click takes place on the search--concerts button, then...
   if (e.target.classList.contains("search--concerts")) {
     let query = concertsInput.value;
-    let querySplit = query.split(" ").join("_");
+    let querySplit = query.split(" ").join("_"); //might not be needed with query method in URL
     //clear information in results div
     results.innerHTML = "";
     //get venue ID from songkick. use input text value as query

@@ -4,7 +4,7 @@ const results = document.getElementById("results--output");
 const parksInput = document.getElementById("parks--input");
 const meetupsInput = document.getElementById("meetups--input");
 const concertsInput = document.getElementById("concerts--input");
-const restaurantsInput = document.getElementById("restaurants--input")
+const restaurantsInput = document.getElementById("restaurants--input");
 const itinerary = document.getElementById("itinerary--output");
 let counter = 0;
 let btnClass = "";
@@ -20,6 +20,7 @@ function clearItinerary() {
     meetup: "",
     concert: ""
   }
+  itinerary.innerHTML = "Park: <br /> Restaurant: <br /> Meetup: <br /> Concert: <br />"
   //PUT will take the cleardatabase variable and overwrite the current itinerary
   //object in our database with its empty string values
   fetch("http://localhost:8088/itinerary/1", {
@@ -30,7 +31,6 @@ function clearItinerary() {
     body: JSON.stringify(clearDatabase)
   })
     // list the parameters of the itinerary in the itinerary div
-    .then(itinerary.innerHTML = "Park: <br /> Restaurant: <br /> Meetup: <br /> Concert: <br />")
 }
 window.onload = clearItinerary();
 
@@ -43,10 +43,8 @@ function createSaveBtn() {
   return btn
 }
 
-/*
-  This function accepts a single object as a parameter...
-  Create div and append div with incrementing #, park name, park address, and button
-*/
+//This function accepts a single object as a parameter...
+//Create div and append div with incrementing #, object information, and button
 function createElement(obj) {
   const div = document.createElement("DIV");
   counter++;
@@ -66,7 +64,7 @@ function createElement(obj) {
   return div
 }
 
-//loop through the array of individual park objects and call createElement(
+//loop through the array of individual objects and call createElement()
 function printToDOM(returnedQuery) {
   returnedQuery.forEach(obj => {
     fragment.appendChild(createElement(obj));
