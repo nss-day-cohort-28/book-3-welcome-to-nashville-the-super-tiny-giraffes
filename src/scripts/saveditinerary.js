@@ -55,7 +55,7 @@ function saveItinerary() {
     })
   }
 
-  // calling the saveItinerary function when the save itinerary button is clicked
+  // calling the saveItinerary function when the save itinerary button is clicked.
   saveItineraryBtn.addEventListener("click", event => saveItinerary(event))
 
 
